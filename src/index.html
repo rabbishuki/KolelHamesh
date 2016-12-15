@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>RDash AngularJS</title>
+	<title>מרכז חמש - מערכת ניהול</title>
   <!-- STYLES -->
   <!-- build:css lib/css/main.min.css -->
   <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="components/bootstrap-rtl/dist/css/bootstrap-rtl.min.css">
   <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="components/simple-line-icons/css/simple-line-icons.css">
   <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash-rtl.css">
   <!-- endbuild -->
   <!-- SCRIPTS -->
@@ -30,35 +31,47 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()">
-            Dashboard
+            לוח הבקרה
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
-        <li class="sidebar-title"><span>NAVIGATION</span></li>
+        <li class="sidebar-title"><span>תפריט</span></li>
         <li class="sidebar-list">
-          <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#">המלצות <span class="menu-icon icon-note"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+          <a href="#">שעות<span class="menu-icon icon-clock"></span></a>
+        </li>
+		<li class="sidebar-list">
+          <a href="#/tables">כוללים<span class="menu-icon icon-cup"></span></a>
+        </li>
+		<li class="sidebar-list">
+          <a href="#/tables">אברכים<span class="menu-icon icon-user"></span></a>
+        </li>
+		<li class="sidebar-list">
+          <a href="#">דוחות<span class="menu-icon icon-notebook"></span></a>
+        </li>
+		<li class="sidebar-list">
+          <a href="#">הגדרות<span class="menu-icon icon-settings"></span></a>
         </li>
       </ul>
-      <div class="sidebar-footer">
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular" target="_blank">
-            Github
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
-            About
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a href="#">
-            Support
-          </a>
-        </div>
-      </div>
+      <!-- <div class="sidebar-footer"> -->
+        <!-- <div class="col-xs-4"> -->
+          <!-- <a href="https://github.com/rdash/rdash-angular" target="_blank"> -->
+            <!-- Github -->
+          <!-- </a> -->
+        <!-- </div> -->
+        <!-- <div class="col-xs-4"> -->
+          <!-- <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank"> -->
+            <!-- About -->
+          <!-- </a> -->
+        <!-- </div> -->
+        <!-- <div class="col-xs-4"> -->
+          <!-- <a href="#"> -->
+            <!-- Support -->
+          <!-- </a> -->
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
     <!-- End Sidebar -->
 
@@ -68,60 +81,21 @@
         <!-- Header Bar -->
         <div class="row header">
           <div class="col-xs-12">
-            <div class="user pull-right">
-              <div class="item dropdown" uib-dropdown>
-                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                  <img src="img/avatar.jpg">
+            <div class="user pull-left">
+              <div class="item dropdown">
+                <a href="#">
+				  <i class="fa icon-logout"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Joe Bloggs
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
               </div>
-              <div class="item dropdown" uib-dropdown>
-               <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+              <div class="item dropdown">
+               <a href="#">
                   <i class="fa fa-bell-o"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Notifications
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#">Server Down!</a>
-                  </li>
-                </ul>
               </div>
             </div>
             <div class="meta">
               <div class="page">
-                Dashboard
-              </div>
-              <div class="breadcrumb-links">
-                Home / Dashboard
+                <img src="img/logo.png" width="50"/>
               </div>
             </div>
           </div>
