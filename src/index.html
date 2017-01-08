@@ -25,7 +25,12 @@
 </head>
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
-
+<script>
+  document.cookie = "username=Shuki";
+  document.cookie = "password=1234";
+  document.cookie = "permission=User";
+  console.log(document.cookie);
+</script>
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar">
@@ -55,23 +60,7 @@
           <a href="#">הגדרות<span class="menu-icon icon-settings"></span></a>
         </li>
       </ul>
-      <!-- <div class="sidebar-footer"> -->
-        <!-- <div class="col-xs-4"> -->
-          <!-- <a href="https://github.com/rdash/rdash-angular" target="_blank"> -->
-            <!-- Github -->
-          <!-- </a> -->
-        <!-- </div> -->
-        <!-- <div class="col-xs-4"> -->
-          <!-- <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank"> -->
-            <!-- About -->
-          <!-- </a> -->
-        <!-- </div> -->
-        <!-- <div class="col-xs-4"> -->
-          <!-- <a href="#"> -->
-            <!-- Support -->
-          <!-- </a> -->
-        <!-- </div> -->
-      <!-- </div> -->
+      
     </div>
     <!-- End Sidebar -->
 
