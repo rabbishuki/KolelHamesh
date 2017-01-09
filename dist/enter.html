@@ -123,9 +123,12 @@
         $(".submit").on('click',function(e){
             e.preventDefault();
             if($(".user").val() && $(".pass").val()){
-                $.post( "/path", { username: $(".user").val(), password: $(".pass").val() })
+                $.post("/login", { username: $(".user").val(), password: $(".pass").val() })
                     .done(function( data ) {
-                    alert( "Data Loaded: " + data );
+                    document.cookie = 'username=' + data.username + ";";
+                    document.cookie = 'permission=' + data.permission + ";";
+                    console.log(data);
+                    window.location.href += data.permission;
                 });    
             }
         });
