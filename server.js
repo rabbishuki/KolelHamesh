@@ -11,13 +11,13 @@ var Users = {
      password : '1234',
      permission : Admin},
      'Itamar': {username : 'Itamar',
-     password : 'qwe123',
+     password : '4321',
      permission : User}
   },
 }
-app.use(express.static('dist'));
-app.use('/javascripts', express.static(__dirname + '/dist/js'));
-app.use('/images', express.static(__dirname + '/dist/img'));
+
+app.use('/javascript', express.static(__dirname + '/dist/js'));
+app.use('/image', express.static(__dirname + '/dist/img'));
 app.use('/lib', express.static(__dirname + '/dist/lib'));
 app.use('/templates', express.static(__dirname + '/dist/templates'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,7 +29,8 @@ function requireRole(role) {
       var a = false;
         for (i in role){
           if((req.body.username || req.cookies.username) &&
-             ((Users.userList[req.body.username] || req.cookies).permission === role[i])) {
+             ((Users.userList[req.body.username] || req.cookies).permission === role[i]) &&
+          (Users.userList[(req.body.username || req.cookies.username)].password === (req.cookies.password || req.body.password))) {
             next();
             a = true;
           }
@@ -41,14 +42,16 @@ function requireRole(role) {
 
 app.get('/', function(req, res) {
   console.log('enter');
-  res.sendFile(__dirname + "/dist/enter.html");
+  res.sendFile(__dirname + "/dist/views/enter.html");
 });
 
 app.post('/login', requireRole([Admin,User]), function(req, res){
-    res.send({username : req.body.username, permission : Users.userList[req.body.username].permission});
-    
+    res.send({username : req.body.username,
+              password : Users.userList[req.body.username].password,
+              permission : Users.userList[req.body.username].permission});   
   }
 );
+
 app.get('/' + Admin, requireRole([Admin]), function(req, res){
   console.log(Admin);
   res.sendFile(__dirname + '/dist/index.html');
@@ -63,5 +66,5 @@ app.get('/' + User, requireRole([User]), function(req, res){
 var port = process.env.PORT || 8080;
 
 app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port + " right now");
+    console.log('Our app is running on http://localhost:' + port);
 });
