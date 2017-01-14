@@ -10,7 +10,7 @@
   <!-- SCRIPTS -->
   <script src="lib/js/main.min.js"></script>
   <!-- Custom Scripts -->
-  <script type="text/javascript" src="javascript\dashboard.min.js"></script>
+  <script type="text/javascript" src="javascript/dashboard.min.js"></script>
 </head>
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
@@ -56,7 +56,7 @@
           <div class="col-xs-12">
             <div class="user pull-left">
               <div class="item dropdown">
-                <a href="#">
+                <a ng-click="logout()">
 				  <i class="fa icon-logout"></i>
                 </a>
               </div>

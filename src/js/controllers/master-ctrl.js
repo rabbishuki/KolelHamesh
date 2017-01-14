@@ -15,6 +15,11 @@ function MasterCtrl($scope, $cookieStore) {
         return window.innerWidth;
     };
 
+    $scope.logout = function() {
+        document.cookie = 'token=; Max-Age=0;';
+        window.location.href = '/';
+    }
+
     $scope.$watch($scope.getWidth, function(newValue, oldValue) {
         if (newValue >= mobileView) {
             if (angular.isDefined($cookieStore.get('toggle'))) {
