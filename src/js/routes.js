@@ -21,7 +21,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
             .state('students', {
                 url: '/students',
-                templateUrl: 'templates/tables.html',
+                templateUrl: 'templates/students.html',
                 controller: 'studentController'
             });
     }
