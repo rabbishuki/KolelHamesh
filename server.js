@@ -10,14 +10,14 @@ var db = require('./database.js');
 var Users = {
   userList: [
     {
-      username: 'Shuki',
-      password: '1234',
+      username: 'שמוליק',
+      password: '770',
       permission: Admin,
       token: '12345'
     },
     {
-      username: 'Itamar',
-      password: '4321',
+      username: 'שלום',
+      password: '770',
       permission: User,
       token: '65432'
     }
@@ -92,11 +92,16 @@ app.get('/students', requireRole([Admin, User]), function (req, res) {
   });
 });
 
-app.post('/students', requireRole([Admin]), function (req, res) {
-  db.ADD('students', req.body.student);
-  res.send({
-    students: db.DB.students
-  });
+app.post('/students', requireRole([Admin, User]), function (req, res) {
+  if (db.ADD('students', req.body.student)) {
+    res.send({
+      success: 'האברך נוסף בהצלחה'
+    });
+  } else {
+    res.send({
+      error: 'המשתמש כבר קיים'
+    });
+  };
 });
 
 var port = process.env.PORT || 8080;

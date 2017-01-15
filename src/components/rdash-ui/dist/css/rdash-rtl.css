@@ -247,9 +247,9 @@ body {
   margin-right: 0 !important;
   margin-left: 0 !important;
 }
-.row > div {
+/*.row > div {
   margin-bottom: 15px;
-}
+}*/
 .alerts-container .alert:last-child {
   margin-bottom: 0;
 }
@@ -468,6 +468,10 @@ ul.sidebar .sidebar-list .menu-icon {
 }
 .widget .widget-body div.alert {
   margin-bottom: 10px;
+}
+.widget .widget-body.xlarge {
+  height: 500px;
+  overflow-y: auto;
 }
 .widget .widget-body.large {
   height: 350px;

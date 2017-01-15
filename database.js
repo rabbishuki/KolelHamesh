@@ -1,25 +1,25 @@
 var DAL = {
   students: [
     {
-      firstName: 'Shuki',
-      lastName: 'Gur',
+      firstName: 'שוקי',
+      lastName: 'גור',
       phone: '770',
       id: '5770',
-      street: 'Rabbi Yehuda Hanassi',
+      street: 'רבי יהודה הנשיא',
       house: '51',
       city: 'PT',
       bank: '1',
       branch: '2',
       account: '3',
-      accountName: 'Shuki',
+      accountName: 'שוקי',
       colel: '1'
     },
     {
-      firstName: 'Itamar',
-      lastName: 'Bitton',
+      firstName: 'איתמר',
+      lastName: 'ביטון',
       phone: '456',
       id: '7894',
-      street: 'Menachem Begin',
+      street: 'מנחם בגין',
       house: '65',
       city: 'PT',
       bank: '5',
@@ -27,20 +27,6 @@ var DAL = {
       account: '78',
       accountName: 'Itamar',
       colel: '1' 
-    },
-    {
-      firstName: null,
-      lastName: null,
-      phone: null,
-      id: null,
-      street: null,
-      house: null,
-      city: null,
-      bank: null,
-      branch: null,
-      account: null,
-      accountName: null,
-      colel: null
     }
   ],
   recomemds: [
@@ -48,8 +34,18 @@ var DAL = {
   ]
 }
 
-var add = function(table, id, object) {
-  DAL[table][id] = object;
+var add = function(table, object = {}) {
+  var match = DAL[table].filter(function (value) {
+      return (value.id === object.id);
+    })[0];
+
+    if (match && match.id) {
+      return false
+    } else {
+      DAL[table].push(object);
+      return true
+    }
+
 }
 
 var remove = function(table, id) {

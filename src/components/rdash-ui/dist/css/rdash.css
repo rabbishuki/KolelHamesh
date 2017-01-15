@@ -213,9 +213,9 @@ body {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
-.row > div {
+/*.row > div {
   margin-bottom: 15px;
-}
+}*/
 .alerts-container .alert:last-child {
   margin-bottom: 0;
 }
