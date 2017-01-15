@@ -1,7 +1,7 @@
  // This service connects to our REST API
  angular.module('RDash').factory("Data", function ($http) {
 
-   var serviceBase = 'http://localhost:8080/';
+   var serviceBase = '/';
 
    var obj = {};
 
