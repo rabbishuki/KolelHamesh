@@ -3,42 +3,42 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', function MasterCtrl($scope, $cookies) {
+        /**
+         * Sidebar Toggle & Cookie Control
+         */
+        var mobileView = 992;
 
-function MasterCtrl($scope, $cookieStore) {
-    /**
-     * Sidebar Toggle & Cookie Control
-     */
-    var mobileView = 992;
+        $scope.getWidth = function () {
+            return window.innerWidth;
+        };
 
-    $scope.getWidth = function() {
-        return window.innerWidth;
-    };
-
-    $scope.logout = function() {
-        document.cookie = 'token=; Max-Age=0;';
-        window.location.href = '/';
-    }
-
-    $scope.$watch($scope.getWidth, function(newValue, oldValue) {
-        if (newValue >= mobileView) {
-            if (angular.isDefined($cookieStore.get('toggle'))) {
-                $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
-            } else {
-                $scope.toggle = true;
-            }
-        } else {
-            $scope.toggle = false;
+        $scope.logout = function () {
+            document.cookie = 'token=; Max-Age=0; link=; Max-Age=0;';
+            window.location.href = '/';
         }
 
+        $scope.$watch($scope.getWidth, function (newValue, oldValue) {
+            if (newValue >= mobileView) {
+                if (angular.isDefined($cookies.get('toggle'))) {
+                    $scope.toggle = !$cookies.get('toggle') ? false : true;
+                } else {
+                    $scope.toggle = true;
+                }
+            } else {
+                $scope.toggle = false;
+            }
+
+        });
+
+        $scope.toggleSidebar = function () {
+            $scope.toggle = !$scope.toggle;
+            $cookies.put('toggle', $scope.toggle);
+        };
+
+        $scope.role = $cookies.get('link');
+
+        window.onresize = function () {
+            $scope.$apply();
+        };
     });
-
-    $scope.toggleSidebar = function() {
-        $scope.toggle = !$scope.toggle;
-        $cookieStore.put('toggle', $scope.toggle);
-    };
-
-    window.onresize = function() {
-        $scope.$apply();
-    };
-}

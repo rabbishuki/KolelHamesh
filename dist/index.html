@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en" ng-app="RDash">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>מרכז חמש - מערכת ניהול</title>
+  <title>מרכז חמש - מערכת ניהול</title>
   <!-- STYLES -->
   <link rel="stylesheet" href="lib/css/main.min.css"/>
   <!-- SCRIPTS -->
@@ -12,6 +13,7 @@
   <!-- Custom Scripts -->
   <script type="text/javascript" src="javascript/dashboard.min.js"></script>
 </head>
+
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
@@ -24,27 +26,52 @@
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
-        <li class="sidebar-title"><span>תפריט</span></li>
+        <span ng-if="role === 'User'">
+        <li class="sidebar-title"><span>תפריט מנהל כולל</span></li>
+        <li class="sidebar-list">
+          <a href="#">דוח נוכחות<span class="menu-icon icon-clock"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">ציונים <span class="menu-icon icon-layers"></span></a>
+        </li>
+        <li class="sidebar-title"></li>
+        <li class="sidebar-list">
+          <a href="#">רשימת אברכים <span class="menu-icon icon-people"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tables">הוסף אברך<span class="menu-icon icon-user-follow"></span></a>
+        </li>
+        <li class="sidebar-title"></li>
+        <li class="sidebar-list">
+          <a href="#/tables">שנה שעות פעילות<span class="menu-icon icon-shuffle"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">שלח הודעה<span class="menu-icon icon-bubble"></span></a>
+        </li>
+        </span>
+        <span ng-if="role === 'Admin'">
+        <li class="sidebar-title"><span>תפריט מנהל רשת</span></li>
+        <li class="sidebar-list">
+          <a href="#">שעות<span class="menu-icon icon-clock"></span></a>
+        </li>
         <li class="sidebar-list">
           <a href="#">המלצות <span class="menu-icon icon-note"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">שעות<span class="menu-icon icon-clock"></span></a>
-        </li>
-		<li class="sidebar-list">
           <a href="#/tables">כוללים<span class="menu-icon icon-cup"></span></a>
         </li>
-		<li class="sidebar-list">
+        <li class="sidebar-list">
           <a href="#/tables">אברכים<span class="menu-icon icon-user"></span></a>
         </li>
-		<li class="sidebar-list">
+        <li class="sidebar-list">
           <a href="#">דוחות<span class="menu-icon icon-notebook"></span></a>
         </li>
-		<li class="sidebar-list">
+        <li class="sidebar-list">
           <a href="#">הגדרות<span class="menu-icon icon-settings"></span></a>
         </li>
+        </span>
       </ul>
-      
+
     </div>
     <!-- End Sidebar -->
 
@@ -57,18 +84,18 @@
             <div class="user pull-left">
               <div class="item dropdown">
                 <a ng-click="logout()">
-				  <i class="fa icon-logout"></i>
+                  <i class="fa icon-logout"></i>
                 </a>
               </div>
               <div class="item dropdown">
-               <a href="#">
+                <a href="#">
                   <i class="fa fa-bell-o"></i>
                 </a>
               </div>
             </div>
             <div class="meta">
               <div class="page">
-                <img src="image/logo.png" width="50"/>
+                <img src="image/logo.png" width="50" />
               </div>
             </div>
           </div>
@@ -78,9 +105,13 @@
         <!-- Main Content -->
         <div ui-view></div>
 
-      </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
-  </div><!-- End Page Wrapper -->
-  
+      </div>
+      <!-- End Page Content -->
+    </div>
+    <!-- End Content Wrapper -->
+  </div>
+  <!-- End Page Wrapper -->
+
 </body>
+
 </html>

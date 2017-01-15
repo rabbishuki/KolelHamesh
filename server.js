@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var Admin = 'Admin';
 var User = 'User';
 var currentUser;
+var db = require('./database.js');
 
 var Users = {
   userList: [
@@ -35,7 +36,7 @@ function requireRole(role) {
   return function (req, res, next) {
     var a = false;
     for (i in role) {
-      var credentials = Object.keys(req.cookies).length ? req.cookies : req.body;
+      var credentials = req.cookies.token ? req.cookies : req.body;
 
       if (validate(credentials, role[i])) {
         a = true;
@@ -84,6 +85,19 @@ app.get('/' + User, requireRole([User]), function (req, res) {
   res.sendFile(__dirname + '/dist/index.html');
 });
 
+
+app.get('/students', requireRole([Admin, User]), function (req, res) {
+  res.send({
+    students: db.DB.students
+  });
+});
+
+app.post('/students', requireRole([Admin]), function (req, res) {
+  db.ADD('students', req.body.student);
+  res.send({
+    students: db.DB.students
+  });
+});
 
 var port = process.env.PORT || 8080;
 
