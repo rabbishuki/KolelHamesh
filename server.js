@@ -104,6 +104,13 @@ app.post('/students', requireRole([Admin, User]), function (req, res) {
   };
 });
 
+app.put('/students', requireRole([Admin, User]), function (req, res) {
+  db.UPD('students', req.body.id, req.body.student);
+  res.send({
+    success: 'האברך עודכן בהצלחה'
+  });
+});
+
 var port = process.env.PORT || 8080;
 
 app.listen(port, function () {

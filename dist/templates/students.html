@@ -106,17 +106,17 @@
             </thead>
             <tbody>
               <tr ng-repeat="student in students track by $index">
-                <td>{{ student.firstName }}</td>
-                <td>{{ student.lastName }}</td>
-                <td>{{ student.phone }}</td>
-                <td class="lborder">{{ student.id }}</td>
-                <td>{{ student.street }}</td>
-                <td>{{ student.house }}</td>
-                <td class="lborder">{{ student.city }}</td>
-                <td>{{ student.bank }}</td>
-                <td>{{ student.branch }}</td>
-                <td>{{ student.account }}</td>
-                <td>{{ student.accountName }}</td>
+                <td ng-click="edit($index)">{{ student.firstName }}</td>
+                <td ng-click="edit($index)">{{ student.lastName }}</td>
+                <td ng-click="edit($index)">{{ student.phone }}</td>
+                <td ng-click="edit($index)" class="lborder">{{ student.id }}</td>
+                <td ng-click="edit($index)">{{ student.street }}</td>
+                <td ng-click="edit($index)">{{ student.house }}</td>
+                <td ng-click="edit($index)" class="lborder">{{ student.city }}</td>
+                <td ng-click="edit($index)">{{ student.bank }}</td>
+                <td ng-click="edit($index)">{{ student.branch }}</td>
+                <td ng-click="edit($index)">{{ student.account }}</td>
+                <td ng-click="edit($index)">{{ student.accountName }}</td>
               </tr>
             </tbody>
           </table>

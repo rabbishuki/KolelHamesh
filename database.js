@@ -45,7 +45,6 @@ var add = function(table, object = {}) {
       DAL[table].push(object);
       return true
     }
-
 }
 
 var remove = function(table, id) {
