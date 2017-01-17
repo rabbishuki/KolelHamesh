@@ -18,6 +18,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('tables', {
                 url: '/tables',
                 templateUrl: 'templates/tables.html'
+            })
+            .state('students', {
+                url: '/students',
+                templateUrl: 'templates/students.html',
+                controller: 'studentController'
             });
     }
 ]);

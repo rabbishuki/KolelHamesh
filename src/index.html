@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en" ng-app="RDash">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>מרכז חמש - מערכת ניהול</title>
+  <title>מרכז חמש - מערכת ניהול</title>
   <!-- STYLES -->
   <!-- build:css lib/css/main.min.css -->
   <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
@@ -12,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="components/simple-line-icons/css/simple-line-icons.css">
   <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash-rtl.css">
+  <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/styles.css">
   <!-- endbuild -->
   <!-- SCRIPTS -->
   <!-- build:js lib/js/main.min.js -->
@@ -23,6 +25,7 @@
   <!-- Custom Scripts -->
   <script type="text/javascript" src="javascript/dashboard.min.js"></script>
 </head>
+
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
@@ -35,27 +38,49 @@
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
-        <li class="sidebar-title"><span>תפריט</span></li>
+        <span ng-if="role === 'User'">
+        <li class="sidebar-title"><span>תפריט מנהל כולל</span></li>
+        <li class="sidebar-list">
+          <a href="#">דוח נוכחות<span class="menu-icon icon-clock"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">ציונים <span class="menu-icon icon-layers"></span></a>
+        </li>
+        <li class="sidebar-title"></li>
+        <li class="sidebar-list">
+          <a href="#/students">אברכים <span class="menu-icon icon-people"></span></a>
+        </li>
+        <li class="sidebar-title"></li>
+        <li class="sidebar-list">
+          <a href="#">שנה שעות פעילות<span class="menu-icon icon-shuffle"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">שלח הודעה<span class="menu-icon icon-bubble"></span></a>
+        </li>
+        </span>
+        <span ng-if="role === 'Admin'">
+        <li class="sidebar-title"><span>תפריט מנהל רשת</span></li>
+        <li class="sidebar-list">
+          <a href="#">שעות<span class="menu-icon icon-clock"></span></a>
+        </li>
         <li class="sidebar-list">
           <a href="#">המלצות <span class="menu-icon icon-note"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">שעות<span class="menu-icon icon-clock"></span></a>
+          <a href="#">כוללים<span class="menu-icon icon-cup"></span></a>
         </li>
-		<li class="sidebar-list">
-          <a href="#/tables">כוללים<span class="menu-icon icon-cup"></span></a>
+        <li class="sidebar-list">
+          <a href="#/students">אברכים<span class="menu-icon icon-user"></span></a>
         </li>
-		<li class="sidebar-list">
-          <a href="#/tables">אברכים<span class="menu-icon icon-user"></span></a>
-        </li>
-		<li class="sidebar-list">
+        <li class="sidebar-list">
           <a href="#">דוחות<span class="menu-icon icon-notebook"></span></a>
         </li>
-		<li class="sidebar-list">
+        <li class="sidebar-list">
           <a href="#">הגדרות<span class="menu-icon icon-settings"></span></a>
         </li>
+        </span>
       </ul>
-      
+
     </div>
     <!-- End Sidebar -->
 
@@ -67,19 +92,19 @@
           <div class="col-xs-12">
             <div class="user pull-left">
               <div class="item dropdown">
-                <a href="#">
-				  <i class="fa icon-logout"></i>
+                <a ng-click="logout()">
+                  <i class="fa icon-logout"></i>
                 </a>
               </div>
               <div class="item dropdown">
-               <a href="#">
+                <a href="#">
                   <i class="fa fa-bell-o"></i>
                 </a>
               </div>
             </div>
             <div class="meta">
               <div class="page">
-                <img src="image/logo.png" width="50"/>
+                <img src="image/logo.png" width="50" />
               </div>
             </div>
           </div>
@@ -89,9 +114,13 @@
         <!-- Main Content -->
         <div ui-view></div>
 
-      </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
-  </div><!-- End Page Wrapper -->
-  
+      </div>
+      <!-- End Page Content -->
+    </div>
+    <!-- End Content Wrapper -->
+  </div>
+  <!-- End Page Wrapper -->
+
 </body>
+
 </html>

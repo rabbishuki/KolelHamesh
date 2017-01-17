@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
         @import url(http://weloveiconfonts.com/api/?family=entypo);
-        @import url(http://fonts.googleapis.com/css?family=Roboto);
+        @import url(https://fonts.googleapis.com/css?family=Roboto);
         
         /* zocial */
         [class*="entypo-"]:before {
@@ -39,7 +40,7 @@
         height: auto;
         }
 
-        input {
+        input, .result {
         padding: 16px;
         border-radius:7px;
         border:0px;
@@ -59,7 +60,7 @@
         }
 
         button {
-        float:right;
+        float:left;
         height: 121px;
         width: 50px;
         border: 0px;
@@ -73,14 +74,14 @@
         .inputUserIcon {
         position:absolute;
         top:68px;
-        right: 80px;
+        left: 80px;
         color:white;
         }
 
         .inputPassIcon {
         position:absolute;
         top:136px;
-        right: 80px;
+        left: 80px;
         color:white;
         }
 
@@ -94,8 +95,9 @@
 
     </style>
 </head>
-<body>
-    <form >
+
+<body dir="rtl">
+    <form>
         <h2>
             <span class="entypo-login"></span> התחבר
         </h2>
@@ -103,39 +105,46 @@
             <span class="entypo-lock"></span>
         </button>
         <span class="entypo-user inputUserIcon"></span>
-        <input type="text" class="user" placeholder="ursername"/>
+        <input type="text" class="user" placeholder="שם משתמש" />
         <span class="entypo-key inputPassIcon"></span>
-        <input type="password" class="pass"placeholder="password"/>
+        <input type="password" class="pass" placeholder="סיסמא" />
+        <div id="result"></div>
     </form>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
-        $(".user").focusin(function(){
-        $(".inputUserIcon").css("color", "#e74c3c");
-        }).focusout(function(){
-        $(".inputUserIcon").css("color", "white");
+        $(".user").focusin(function () {
+            $(".inputUserIcon").css("color", "#e74c3c");
+        }).focusout(function () {
+            $(".inputUserIcon").css("color", "white");
         });
 
-        $(".pass").focusin(function(){
-        $(".inputPassIcon").css("color", "#e74c3c");
-        }).focusout(function(){
-        $(".inputPassIcon").css("color", "white");
+        $(".pass").focusin(function () {
+            $(".inputPassIcon").css("color", "#e74c3c");
+        }).focusout(function () {
+            $(".inputPassIcon").css("color", "white");
         });
-        $(".submit").on('click',function(e){
+        $(".submit").on('click', function (e) {
             e.preventDefault();
-            if($(".user").val() && $(".pass").val()){
-                document.cookie = 'username=' + $(".user").val() + ";";
-                document.cookie = 'password=' + $(".pass").val() + ";";
-                
+            if ($(".user").val() && $(".pass").val()) {
+                document.cookie = 'token=; Max-Age=0; link=; Max-Age=0;';
+
                 $.post("/login", { username: $(".user").val(), password: $(".pass").val() })
-                    .done(function( data ) {
-                    document.cookie = 'username=' + data.username + ";";
-                    document.cookie = 'password=' + data.password + ";";
-                    document.cookie = 'permission=' + data.permission + ";";
-                    console.log(data);
-                    window.location.href += data.permission;
-                });    
+                    .done(function (data) {
+                        document.cookie = 'token=' + data.token + ";";
+                        document.cookie = 'link=' + data.link + ";";
+                        console.log(data);
+                        window.location.href += data.link;
+                    })
+                    .fail(function (error) {
+                        $('#result').text("שם משתמש או סיסמא אינם נכונים");
+                        $('#result').addClass('result');
+                    });
+            } else {
+                $('#result').text("חסר שם משתמש או סיסמא");
+                $('#result').addClass('result');
             }
         });
     </script>
 </body>
+
 </html>
